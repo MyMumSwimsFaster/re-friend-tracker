@@ -6,7 +6,7 @@ export class GuiModel {
 
     private _guiModel = {
         "application": {
-            "title": "ZHAW Requirements Engineering Friend Tracker (FS2024)",
+            "title": "Kevin Thurnes",
             "formList": [
                 {
                     "id": "FriendForm",
@@ -28,7 +28,14 @@ export class GuiModel {
                             "required": true
                         },
                         {
-                            "id":   "location",
+                            "id": "nickname",
+                            "type": "text",
+                            "name": "Nickname",
+                            "width": 2,
+                            "required": false
+                        },
+                        {
+                            "id": "location",
                             "type": "autocomplete",
                             "name": "Location",
                             "url": "/location",
@@ -90,19 +97,16 @@ export class GuiModel {
                     ]
                 },
                 {
-                    "id": "AddActivityForm",
-                    "title": "Activity",
-                    "url": "/friend/:friendKey/activity",
+                    "id": "GroupForm",
+                    "title": "Group",
+                    "url": "/group",
                     "formFieldList": [
                         {
-                            "id":   "activity",
-                            "type": "autocomplete",
-                            "name": "Activity",
-                            "url": "/activity",
-                            "defaultKey": "activityKey",
-                            "readonly": true,
-                            "form": "ActivityForm",
-                            "width": 2
+                            "id": "groupName",
+                            "type": "text",
+                            "name": "GroupName",
+                            "width": 2,
+                            "required": true
                         },
                         {
                             "type": "deleteButton",
@@ -117,7 +121,7 @@ export class GuiModel {
                             "name": "Ok"
                         }
                     ]
-                },
+                }
             ],
             "pageList": [
                 {
@@ -138,6 +142,13 @@ export class GuiModel {
                             "color": "yellow",
                             "page": "locationspage",
                         },
+                        {
+                            "type": "button",
+                            "name": "Groups",
+                            "icon": "fa-users",
+                            "color": "purple",
+                            "page": "groupspage",
+                        }
                     ]
                 },
                 {
@@ -195,10 +206,36 @@ export class GuiModel {
                         },
                     ]
                 },
+                {
+                    "id": "groupspage",
+                    "elementList": [
+                        {
+                            "type": "backbutton",
+                        },
+                        {
+                            "type": "newButton",
+                            "name": "NewGroup",
+                            "icon": "fa-users",
+                            "color": "green",
+                            "form": {
+                                "form": "GroupForm"
+                            }
+                        },
+                        {
+                            "type": "list",
+                            "icon": "fa-users",
+                            "color": "purple",
+                            "search": true,
+                            "url": "/group",
+                            "form": {
+                                "form": "GroupForm"
+                            }
+                        },
+                    ]
+                },
             ]
         }
     };
-
 
     get guiModel() {
         return this._guiModel;
